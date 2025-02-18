@@ -9,5 +9,10 @@ import { RouterModule } from '@angular/router';
   templateUrl: './gustov.component.html',
 })
 export default class GustovComponent  {
+  isMenuOpen = false;
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
 
 }
