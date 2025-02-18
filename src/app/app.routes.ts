@@ -9,5 +9,6 @@ export const routes: Routes = [
     {
         path: '',
         loadChildren: () =>import('./features/main-layout/main.routes')
-    }
+    },
+    
 ];

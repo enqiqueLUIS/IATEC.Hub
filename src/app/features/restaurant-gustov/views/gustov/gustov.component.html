@@ -1,1 +1,32 @@
-<div class="bg-amber-500 h-5 w-5" >jsjasjas</div>
+<!-- Botón para abrir el menú en móviles -->
+<button (click)="toggleMenu()"
+    class="fixed top-4 left-4 z-50 p-3 rounded-full bg-purple-400 text-white shadow-lg hover:bg-purple-500 transition duration-300 lg:hidden">
+    ☰
+</button>
+
+<!-- Menú Lateral Izquierdo -->
+<div [ngClass]="{ 'translate-x-0': isMenuOpen, '-translate-x-full': !isMenuOpen }"
+    class="fixed top-0 left-0 w-64 h-full bg-purple-500 text-white shadow-lg transform transition-transform duration-300 lg:translate-x-0">
+    
+    <div class="flex justify-between items-center p-4 border-b border-purple-400">
+        <h2 class="text-xl font-semibold">Menú</h2>
+        <button (click)="toggleMenu()"
+            class="text-white text-2xl hover:text-gray-300 lg:hidden">
+            ✕
+        </button>
+    </div>
+
+    <nav class="flex flex-col p-4 space-y-2">
+        <a routerLink="/" class="block text-left hover:bg-purple-400 p-2 rounded-lg transition">Portal</a>
+        <button class="block text-left hover:bg-purple-400 p-2 rounded-lg transition w-full">Platos</button>
+        <button class="block text-left hover:bg-purple-400 p-2 rounded-lg transition w-full">Metodos de pago</button>
+        <button class="block text-left hover:bg-purple-400 p-2 rounded-lg transition w-full">Venta</button>
+        <button class="block text-left hover:bg-purple-400 p-2 rounded-lg transition w-full">Venta detallada</button>
+        <button class="block text-left hover:bg-purple-400 p-2 rounded-lg transition w-full">Reportes</button>
+    </nav>
+    
+</div>
+
+<main>
+    <router-outlet></router-outlet>
+</main>
