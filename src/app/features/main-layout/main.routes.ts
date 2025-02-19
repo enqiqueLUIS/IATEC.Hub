@@ -1,6 +1,7 @@
 import { Routes } from "@angular/router";
 import { MainLayoutComponent } from "./main-layout.component";
 import { HomeComponent } from "../home/views/index/home.component";
+import { DishComponent } from "../restaurant-gustov/controls/dish/dish.component";
 
 export const mainLayoutRoutes: Routes = [
     {
