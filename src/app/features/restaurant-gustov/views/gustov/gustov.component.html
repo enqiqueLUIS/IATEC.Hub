@@ -1,0 +1,47 @@
+<!-- Contenedor Principal -->
+<div class="flex flex-col lg:flex-row h-screen bg-gray-100">
+
+    <!-- Menú (Superior en móviles, lateral en PC) -->
+    <div class="w-full lg:w-64 bg-purple-600 text-white shadow-xl p-4 
+                overflow-x-auto lg:overflow-y-auto whitespace-nowrap lg:whitespace-normal rounded-lg lg:rounded-none"
+        [ngClass]="{
+            'flex lg:flex-col': true 
+        }">
+        
+        <nav class="flex lg:flex-col space-x-4 lg:space-x-0 lg:space-y-3 text-lg">
+            <a routerLink="/" class="hover:bg-purple-500 p-3 rounded-lg transition flex items-center">
+                🏠 Portal
+            </a>
+            <button (click)="toggleDishes()" class="hover:bg-purple-500 p-3 rounded-lg transition flex items-center">
+                🍽️ Platos
+            </button>
+            <button (click)="togglePaymentMethods()" class="hover:bg-purple-500 p-3 rounded-lg transition flex items-center">
+                💳 Métodos de pago
+            </button>
+            <button (click)="toggleSale()" class="hover:bg-purple-500 p-3 rounded-lg transition flex items-center">
+                📊 Venta y Detalles
+            </button>
+            <button class="hover:bg-purple-500 p-3 rounded-lg transition flex items-center">
+                📜 Reportes
+            </button>
+        </nav>
+    </div>
+
+    <div class="flex-1 p-8 overflow-auto bg-white shadow-lg rounded-lg">
+        <router-outlet></router-outlet>
+    
+        <ng-container *ngIf="isDishesVisible">
+            <app-dish></app-dish>
+        </ng-container>
+        
+        <ng-container *ngIf="isPaymentMethodsVisible">
+            <app-payment-methods></app-payment-methods>
+        </ng-container>
+
+        <ng-container *ngIf="isSaleVisible">
+            <app-sale></app-sale>
+        </ng-container>
+    </div>
+    
+
+</div>
