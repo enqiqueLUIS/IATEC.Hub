@@ -1,12 +1,13 @@
-<div class="flex flex-col md:flex-row">
-  <div class="w-full md:w-1/2 bg-amber-50 shadow-lg p-4 rounded-lg ml-auto">
+<div class="flex h-full">
+  <div class="w-full bg-amber-50 shadow-lg p-4 rounded-lg overflow-auto">
+
 
       <button (click)="openCreateModal()" 
         class="bg-white shadow-lg rounded-xl overflow-hidden transform transition duration-300 hover:scale-105 flex flex-col items-center justify-center p-4 border-2 border-dashed border-gray-300 text-black font-semibold px-3 py-1 text-sm w-full h-12">
-  ➕ Agregar Detalle de Venta
+    ➕ Agregar Detalle de Venta
       </button>
 
-      <div *ngIf="salesDetails.length > 0" class="mt-4 overflow-x-auto">
+      <div *ngIf="salesDetails.length > 0" class="mt-4 overflow-x-auto w-full">
         <table class="w-full border-collapse border border-gray-300">
           <thead>
             <tr class="bg-gray-200">
@@ -30,8 +31,9 @@
               <td class="border border-gray-300 px-2 py-2">{{ detail.paymentMethod?.name }}</td>
               <td class="border border-gray-300 px-2 py-2 text-center">${{ detail.sale?.total }}</td>
               <td class="border border-gray-300 px-2 py-2 text-center">
-                <button (click)="openEditModal(detail)" class="mr-2 bg-purple-500 h-5 w-5">.</button>
-                <button (click)="deleteSaleDetail(detail.id)" class="mr-2 bg-amber-500 h-5 w-5">.</button>
+                <button (click)="openEditModal(detail)" class="bg-purple-500 text-white px-2 py-1 rounded hover:bg-purple-600 transition text-xs md:text-sm">Editar</button>
+                <button (click)="deleteSaleDetail(detail.id)" class="bg-amber-500 text-white px-2 py-1 rounded hover:bg-amber-600 transition text-xs md:text-sm ml-1 md:ml-2">
+                  Eliminar</button>
               </td>
             </tr>
           </tbody>
@@ -39,7 +41,7 @@
       </div>
 
       
-    </div>
+  </div>
 </div>
 
 <div *ngIf="isModalOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
@@ -75,6 +77,7 @@
     <label class="block mb-2 text-sm">Sub Total:</label>
     <input [(ngModel)]="curretSaleDetail.subTotal" 
     type="number" 
+    min="1"
     title="Sub Total" 
     placeholder="Ingrese el Sub Total"   
     class="w-full border border-gray-300 rounded-md p-2 mb-4 text-sm" />
