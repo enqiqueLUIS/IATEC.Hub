@@ -27,7 +27,7 @@ export class PaymentMethodsComponent {
   }
 
   #loadPaymentMethods() {
-    this.#paymentMethodService.getall$()
+    this.#paymentMethodService.getAll$()
       .pipe(takeUntilDestroyed(this.#destroyRef))
       .subscribe({
         next: (response) => {

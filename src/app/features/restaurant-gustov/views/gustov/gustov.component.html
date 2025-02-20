@@ -18,11 +18,8 @@
             <button (click)="togglePaymentMethods()" class="hover:bg-purple-500 p-3 rounded-lg transition flex items-center">
                 💳 Métodos de pago
             </button>
-            <button class="hover:bg-purple-500 p-3 rounded-lg transition flex items-center">
-                📈 Venta
-            </button>
-            <button class="hover:bg-purple-500 p-3 rounded-lg transition flex items-center">
-                📊 Venta detallada
+            <button (click)="toggleSale()" class="hover:bg-purple-500 p-3 rounded-lg transition flex items-center">
+                📊 Venta y Detalles
             </button>
             <button class="hover:bg-purple-500 p-3 rounded-lg transition flex items-center">
                 📜 Reportes
@@ -39,6 +36,10 @@
         
         <ng-container *ngIf="isPaymentMethodsVisible">
             <app-payment-methods></app-payment-methods>
+        </ng-container>
+
+        <ng-container *ngIf="isSaleVisible">
+            <app-sale></app-sale>
         </ng-container>
     </div>
     

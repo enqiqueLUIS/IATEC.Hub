@@ -1,9 +1,10 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { DestroyRef, inject, Injectable } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
-import { PaymentMethodsModel } from '../models/PaymentMethods.model';
+import { PaymentMethodsModel } from '../models/paymentMethods.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SuintApiResponseInterface } from '../../../core/models/api-response.interface';
+import { PaymentMethodsInterface } from '../models/paymentMethods.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -25,15 +26,15 @@ export class PaymentMethodsService {
     .pipe(takeUntilDestroyed(destroyRef));
   }
 
-  getall$() {
-    return this.#httpClient.get<SuintApiResponseInterface<PaymentMethodsModel[]>>(`${this.#endPoint}`)
+  getAll$() {
+    return this.#httpClient.get<SuintApiResponseInterface<PaymentMethodsInterface[]>>(`${this.#endPoint}`)
     .pipe(
       catchError((error) => this.#handleError(error))
     )
   }
 
   getById$(paymentMethodsId: number) {
-    return this.#httpClient.get<SuintApiResponseInterface<PaymentMethodsModel>>(`${this.#endPoint}/get-by-id/${paymentMethodsId}`)
+    return this.#httpClient.get<PaymentMethodsInterface>(`${this.#endPoint}/${paymentMethodsId}`)
     .pipe(
       catchError((error) => this.#handleError(error))
     );
