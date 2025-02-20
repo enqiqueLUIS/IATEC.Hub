@@ -40,14 +40,21 @@
   <div class="bg-white p-6 rounded-lg shadow-lg w-96">
     <h2 class="text-xl font-bold text-purple-600 mb-4">{{ isEditing ? 'Editar Plato' : 'Crear Plato' }}</h2>
 
-    <input type="text" [(ngModel)]="currentDish.name" placeholder="Nombre" 
-           class="w-full p-2 mb-2 border rounded-md">
+    <input 
+    type="text" 
+    [(ngModel)]="currentDish.name" 
+    placeholder="Nombre" 
+    class="w-full p-2 mb-2 border rounded-md">
+    <textarea [(ngModel)]="currentDish.description" 
+    placeholder="Descripción"   
+    class="w-full p-2 mb-2 border rounded-md"></textarea>
     
-    <textarea [(ngModel)]="currentDish.description" placeholder="Descripción" 
-              class="w-full p-2 mb-2 border rounded-md"></textarea>
-    
-              <input type="number" [(ngModel)]="currentDish.price" placeholder="Precio" 
-              class="w-full p-2 mb-2 border rounded-md" min="0">
+              <input 
+              type="number" 
+              [(ngModel)]="currentDish.price" 
+              placeholder="Precio" 
+              class="w-full p-2 mb-2 border rounded-md" 
+              min="0">
        
 
     <div class="flex justify-end space-x-2">

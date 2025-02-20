@@ -12,16 +12,16 @@
             <a routerLink="/" class="hover:bg-purple-500 p-3 rounded-lg transition flex items-center">
                 🏠 Portal
             </a>
-            <button (click)="toggleDishes()" class="hover:bg-purple-500 p-3 rounded-lg transition flex items-center">
+            <button (click)="toggleSection('dishes')" class="hover:bg-purple-500 p-3 rounded-lg transition flex items-center">
                 🍽️ Platos
             </button>
-            <button (click)="togglePaymentMethods()" class="hover:bg-purple-500 p-3 rounded-lg transition flex items-center">
+            <button (click)="toggleSection('paymentMethods')" class="hover:bg-purple-500 p-3 rounded-lg transition flex items-center">
                 💳 Métodos de pago
             </button>
-            <button (click)="toggleSale()" class="hover:bg-purple-500 p-3 rounded-lg transition flex items-center">
+            <button (click)="toggleSection('sale')" class="hover:bg-purple-500 p-3 rounded-lg transition flex items-center">
                 📊 Venta y Detalles
             </button>
-            <button class="hover:bg-purple-500 p-3 rounded-lg transition flex items-center">
+            <button (click)="toggleSection('saleDetails')" class="hover:bg-purple-500 p-3 rounded-lg transition flex items-center">
                 📜 Reportes
             </button>
         </nav>
@@ -30,16 +30,20 @@
     <div class="flex-1 p-8 overflow-auto bg-white shadow-lg rounded-lg">
         <router-outlet></router-outlet>
     
-        <ng-container *ngIf="isDishesVisible">
+        <ng-container *ngIf="activeSection === 'dishes'">
             <app-dish></app-dish>
         </ng-container>
         
-        <ng-container *ngIf="isPaymentMethodsVisible">
+        <ng-container *ngIf="activeSection === 'paymentMethods'">
             <app-payment-methods></app-payment-methods>
         </ng-container>
-
-        <ng-container *ngIf="isSaleVisible">
+        
+        <ng-container *ngIf="activeSection === 'sale'">
             <app-sale></app-sale>
+        </ng-container>
+        
+        <ng-container *ngIf="activeSection === 'saleDetails'">
+            <app-sale-details></app-sale-details>
         </ng-container>
     </div>
     
