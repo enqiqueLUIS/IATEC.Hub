@@ -115,7 +115,7 @@ export class DishComponent {
             this.dishes = this.dishes.filter(dish => dish.id !== dishId); 
             this.#cdr.detectChanges(); 
           }
-        },
+        }
       });
   }
   

@@ -15,7 +15,7 @@
             <button (click)="toggleDishes()" class="hover:bg-purple-500 p-3 rounded-lg transition flex items-center">
                 🍽️ Platos
             </button>
-            <button class="hover:bg-purple-500 p-3 rounded-lg transition flex items-center">
+            <button (click)="togglePaymentMethods()" class="hover:bg-purple-500 p-3 rounded-lg transition flex items-center">
                 💳 Métodos de pago
             </button>
             <button class="hover:bg-purple-500 p-3 rounded-lg transition flex items-center">
@@ -30,10 +30,17 @@
         </nav>
     </div>
 
-    <div class="flex-1 p-8 overflow-auto  bg-white shadow-lg rounded-lg">
+    <div class="flex-1 p-8 overflow-auto bg-white shadow-lg rounded-lg">
         <router-outlet></router-outlet>
-
-        <app-dish *ngIf="isDishesVisible"></app-dish>
+    
+        <ng-container *ngIf="isDishesVisible">
+            <app-dish></app-dish>
+        </ng-container>
+        
+        <ng-container *ngIf="isPaymentMethodsVisible">
+            <app-payment-methods></app-payment-methods>
+        </ng-container>
     </div>
+    
 
 </div>
