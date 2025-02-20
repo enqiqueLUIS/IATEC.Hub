@@ -27,7 +27,7 @@ export class SaleDetailsService {
   }
 
   getAll$() {
-    return this.#httpClient.get<SuintApiResponseInterface<SaleDetailsInterface[]>>(`${this.#endPoint}`)
+    return this.#httpClient.get<SaleDetailsInterface[]>(`${this.#endPoint}`)
     .pipe(
       catchError((error) => this.#handleError(error))
       );

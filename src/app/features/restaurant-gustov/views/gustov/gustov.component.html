@@ -21,7 +21,7 @@
             <button (click)="toggleSection('sale-dashboard')" class="hover:bg-purple-500 p-3 rounded-lg transition flex items-center">
                 📊 Venta y Detalles
             </button>
-            <button class="hover:bg-purple-500 p-3 rounded-lg transition flex items-center">
+            <button (click)="toggleSection('report')" class="hover:bg-purple-500 p-3 rounded-lg transition flex items-center">
                 📜 Reportes
             </button>
             
@@ -38,17 +38,13 @@
         <ng-container *ngIf="activeSection === 'paymentMethods'">
             <app-payment-methods></app-payment-methods>
         </ng-container>
-        
-        <ng-container *ngIf="activeSection === 'sale'">
-            <app-sale></app-sale>
-        </ng-container>
-        
-        <ng-container *ngIf="activeSection === 'saleDetails'">
-            <app-sale-details></app-sale-details>
-        </ng-container>
 
         <ng-container *ngIf="activeSection === 'sale-dashboard'" >
             <app-sale-dashboard></app-sale-dashboard>
+        </ng-container>
+
+        <ng-container *ngIf="activeSection === 'report'" >
+            <app-report></app-report>
         </ng-container>
     </div>
     

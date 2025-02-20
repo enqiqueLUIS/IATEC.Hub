@@ -1,0 +1,38 @@
+<div class="p-4">
+    <h2 class="text-xl font-bold mb-4">Reporte de Ventas</h2>
+
+    <div *ngIf="salesDetails.length > 0; else noData">
+      <table class="w-full border border-gray-300 text-sm">
+        <thead class="bg-gray-200">
+          <tr>
+            <th class="border px-4 py-2">ID Venta</th>
+            <th class="border px-4 py-2">Fecha</th>
+            <th class="border px-4 py-2">Plato</th>
+            <th class="border px-4 py-2">Precio</th>
+            <th class="border px-4 py-2">Descripción</th>
+            <th class="border px-4 py-2">Cantidad</th>
+            <th class="border px-4 py-2">Subtotal</th>
+            <th class="border px-4 py-2">Total</th>
+            <th class="border px-4 py-2">Método de Pago</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let detail of salesDetails" class="hover:bg-gray-100">
+            <td class="border px-4 py-2 text-center">{{ detail.sale?.id || 'N/A' }}</td>
+            <td class="border px-4 py-2 text-center">{{ detail.sale?.saleDate | date:'short' }}</td>
+            <td class="border px-4 py-2">{{ detail.dish?.name || 'Desconocido' }}</td>
+            <td class="border px-4 py-2 text-right">{{ detail.dish?.price | currency }}</td>
+            <td class="border px-4 py-2">{{ detail.dish?.description || 'No disponible' }}</td>
+            <td class="border px-4 py-2 text-center">{{ detail.amount }}</td>
+            <td class="border px-4 py-2 text-right">{{ detail.subTotal | currency }}</td>
+            <td class="border px-4 py-2 text-right">{{ detail.sale?.total | currency }}</td>
+            <td class="border px-4 py-2">{{ detail.paymentMethod?.name || 'No disponible' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ng-template #noData>
+      <p class="text-gray-500 italic">No hay datos disponibles.</p>
+    </ng-template>
+</div>
