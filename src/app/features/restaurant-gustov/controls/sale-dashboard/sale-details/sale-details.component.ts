@@ -51,24 +51,35 @@ export class SaleDetailsComponent {
       .pipe(
         takeUntilDestroyed(this.#destroyRef),
         switchMap(response => {
-          if (!response || !Array.isArray(response) || response.length === 0) return of([]);
-  
+          if (!response || !Array.isArray(response) || response.length === 0) return of<SaleDetailsInterface[]>([]);
+
           return forkJoin(response.map(detail =>
             forkJoin({
-              dish: this.#dishService.getById$(detail.dishId).pipe(catchError(() => of(null))),
-              sale: this.#saleService.getById$(detail.saleId).pipe(catchError(() => of(null)))
+              dish: this.#dishService.getById$(detail.dishId).pipe(
+                catchError(() => of({ id: 0, name: 'Desconocido', price: 0, description: 'No disponible' } as DishInterface))
+              ),
+              sale: this.#saleService.getById$(detail.saleId).pipe(
+                catchError(() => of({ id: 0, saleDate: new Date(), total: 0, paymentMethodId: 0, paymentMethodName: 'No disponible' } as SaleInterface))
+              )
             }).pipe(
               switchMap(({ dish, sale }) => 
-                (!dish || !sale) ? of(null) :
                 this.#paymentMethodService.getById$(sale.paymentMethodId).pipe(
                   map((paymentMethod: PaymentMethodsInterface) => ({
-                    ...detail, dish, sale, paymentMethod
-                  })),
-                  catchError(() => of({ ...detail, dish, sale, paymentMethod: { id: sale.paymentMethodId, name: 'Desconocido' } }))
+                    ...detail,
+                    dish,
+                    sale,
+                    paymentMethod
+                  }) as SaleDetailsInterface),
+                  catchError(() => of({
+                    ...detail,
+                    dish,
+                    sale,
+                    paymentMethod: { id: sale.paymentMethodId, name: 'Desconocido' }
+                  } as SaleDetailsInterface))
                 )
               )
             )
-          )).pipe(map(details => details.filter(Boolean)));
+          ));
         })
       )
       .subscribe({
@@ -77,7 +88,8 @@ export class SaleDetailsComponent {
           this.#cdr.detectChanges();
         }
       });
-  }
+}
+
 
   #loadDishes() {
     this.#dishService.getAll$()
