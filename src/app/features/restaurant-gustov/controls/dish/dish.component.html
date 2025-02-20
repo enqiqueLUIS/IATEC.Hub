@@ -3,7 +3,6 @@
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
     <div *ngFor="let dish of dishes;" class="bg-white shadow-lg rounded-xl overflow-hidden transform transition duration-300 hover:scale-105 h-full flex flex-col min-h-[250px]">
       <div class="p-6 bg-white shadow-md rounded-lg flex flex-col flex-1">
-
         <div class="flex justify-between items-start flex-1">
           <div class="flex-1">
             <h3 class="text-lg font-bold text-purple-600">{{ dish.name }}</h3>
@@ -49,8 +48,9 @@
     <textarea [(ngModel)]="currentDish.description" placeholder="Descripción" 
               class="w-full p-2 mb-2 border rounded-md"></textarea>
     
-    <input type="number" [(ngModel)]="currentDish.price" placeholder="Precio" 
-           class="w-full p-2 mb-2 border rounded-md">
+              <input type="number" [(ngModel)]="currentDish.price" placeholder="Precio" 
+              class="w-full p-2 mb-2 border rounded-md" min="0">
+       
 
     <div class="flex justify-end space-x-2">
       <button (click)="closeModal()" class="bg-gray-400 px-4 py-2 text-white rounded-md">Cancelar</button>
