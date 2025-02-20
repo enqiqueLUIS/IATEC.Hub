@@ -1,0 +1,92 @@
+<div class="flex flex-col md:flex-row">
+  <div class="w-full md:w-1/2 bg-amber-50 shadow-lg p-4 rounded-lg ml-auto">
+
+      <button (click)="openCreateModal()" 
+        class="bg-white shadow-lg rounded-xl overflow-hidden transform transition duration-300 hover:scale-105 flex flex-col items-center justify-center p-4 border-2 border-dashed border-gray-300 text-black font-semibold px-3 py-1 text-sm w-full h-12">
+  ➕ Agregar Detalle de Venta
+      </button>
+
+      <div *ngIf="salesDetails.length > 0" class="mt-4 overflow-x-auto">
+        <table class="w-full border-collapse border border-gray-300">
+          <thead>
+            <tr class="bg-gray-200">
+              <th class="border border-gray-300 px-2 py-2 text-left">Fecha de compra</th>
+              <th class="border border-gray-300 px-2 py-2 text-left">Plato</th>
+              <th class="border border-gray-300 px-2 py-2 text-left">Precio del plato</th>
+              <th class="border border-gray-300 px-2 py-2 text-left">Cantidad</th>
+              <th class="border border-gray-300 px-2 py-2 text-left">Sub Total</th>
+              <th class="border border-gray-300 px-2 py-2 text-left">Método</th>
+              <th class="border border-gray-300 px-2 py-2 text-left">Total</th>
+              <th class="border border-gray-300 px-2 py-2 text-left">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let detail of salesDetails" class="bg-white transition">
+              <td class="border border-gray-300 px-2 py-2">{{ detail.sale?.saleDate | date:'shortDate' }}</td>
+              <td class="border border-gray-300 px-2 py-2">{{ detail.dish?.name }}</td>
+              <td class="border border-gray-300 px-2 py-2 text-center">${{ detail.dish?.price }}</td>
+              <td class="border border-gray-300 px-2 py-2 text-center">{{ detail.amount }}</td>
+              <td class="border border-gray-300 px-2 py-2 text-center">${{ detail.subTotal }}</td>
+              <td class="border border-gray-300 px-2 py-2">{{ detail.paymentMethod?.name }}</td>
+              <td class="border border-gray-300 px-2 py-2 text-center">${{ detail.sale?.total }}</td>
+              <td class="border border-gray-300 px-2 py-2 text-center">
+                <button (click)="openEditModal(detail)" class="mr-2 bg-purple-500 h-5 w-5">.</button>
+                <button (click)="deleteSaleDetail(detail.id)" class="mr-2 bg-amber-500 h-5 w-5">.</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      
+    </div>
+</div>
+
+<div *ngIf="isModalOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+    <h2 class="text-lg font-semibold mb-4  text-purple-600">
+      {{ isEditing ? 'Editar Detalle de Venta' : 'Agregar Detalle de Venta' }}
+    </h2>
+
+    <label class="block mb-2 text-sm">Plato:</label>
+    <select [(ngModel)]="curretSaleDetail.dishId" 
+    class="w-full border border-gray-300 rounded-md p-2 mb-4 text-sm" 
+    title="Seleccionar Plato">
+      <option *ngFor="let dish of dishes" [value]="dish.id">{{ dish.name }}</option>
+    </select>
+
+    <label class="block mb-2 text-sm">Venta:</label>
+    <select [(ngModel)]="curretSaleDetail.saleId" 
+    class="w-full border border-gray-300 rounded-md p-2 mb-4 text-sm" 
+    title="Seleccionar Venta">
+      <option *ngFor="let sale of sales" [value]="sale.id">{{ sale.saleDate | date:'shortDate' }}
+      </option>
+    </select>
+
+    <label class="block mb-2 text-sm">Cantidad:</label>
+    <input [(ngModel)]="curretSaleDetail.amount" 
+    type="number" 
+    min="1" 
+    title="Cantidad" 
+    placeholder="Ingrese la cantidad"
+    class="w-full border border-gray-300 rounded-md p-2 mb-4 text-sm" />
+
+
+    <label class="block mb-2 text-sm">Sub Total:</label>
+    <input [(ngModel)]="curretSaleDetail.subTotal" 
+    type="number" 
+    title="Sub Total" 
+    placeholder="Ingrese el Sub Total"   
+    class="w-full border border-gray-300 rounded-md p-2 mb-4 text-sm" />
+
+
+    <div class="flex justify-between">
+      <button (click)="closeModal()" class="bg-gray-400 text-white px-4 py-2 rounded-md hover:bg-gray-500">
+        Cancelar
+      </button>
+      <button (click)="saveSaleDetail()" class="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700">
+        {{ isEditing ? 'Guardar Cambios' : 'Crear' }}
+      </button>
+    </div>
+  </div>
+</div>

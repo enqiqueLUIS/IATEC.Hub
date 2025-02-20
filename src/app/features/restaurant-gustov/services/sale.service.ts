@@ -34,7 +34,7 @@ export class SaleService {
   }
 
   getById$(saleId: number) {
-    return this.#httpClient.get<SuintApiResponseInterface<SaleInterface>>(`${this.#endPoint}/get-by-id/${saleId}`)
+    return this.#httpClient.get<SaleInterface>(`${this.#endPoint}/${saleId}`)
     .pipe(
       catchError((error) => this.#handleError(error))
     );

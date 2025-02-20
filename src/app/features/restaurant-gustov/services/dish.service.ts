@@ -34,7 +34,7 @@ export class DishService {
   }
 
   getById$(dishId: number) {
-    return this.#httpClient.get<SuintApiResponseInterface<DishInterface>>(`${this.#endPoint}/get-by-id/${dishId}`)
+    return this.#httpClient.get<DishInterface>(`${this.#endPoint}/${dishId}`)
       .pipe(
         catchError((error) => this.#handleError(error))
       );

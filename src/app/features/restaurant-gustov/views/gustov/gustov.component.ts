@@ -5,42 +5,25 @@ import { DishComponent } from '../../controls/dish/dish.component';
 import { PaymentMethodsComponent } from '../../controls/payment-methods/payment-methods.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SaleComponent } from '../../controls/sale-dashboard/sale/sale.component';
+import { SaleDetailsComponent } from '../../controls/sale-dashboard/sale-details/sale-details.component';
 
 @Component({
   selector: 'features-gustov',
   standalone: true,
-  imports: [RouterModule, CommonModule, DishComponent, HttpClientModule, PaymentMethodsComponent, SaleComponent],
+  imports: [RouterModule, CommonModule, DishComponent, HttpClientModule, PaymentMethodsComponent, SaleComponent, SaleDetailsComponent],
   templateUrl: './gustov.component.html',
 })
 export default class GustovComponent {
   isMenuOpen = false;
-  isDishesVisible = false;
-  isPaymentMethodsVisible = false;
-  isSaleVisible = false;
+  activeSection: string | null = null;
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
-  toggleDishes() {
-    const wasVisible = this.isDishesVisible;
-    this.isDishesVisible = !wasVisible;
-    this.isPaymentMethodsVisible = false;
-    this.isSaleVisible = false;
-  }
-
-  togglePaymentMethods() {
-    const wasVisible = this.isPaymentMethodsVisible;
-    this.isPaymentMethodsVisible = !wasVisible;
-    this.isDishesVisible = false;
-    this.isSaleVisible = false;
-  }
-
-  toggleSale() {
-    const wasVisible = this.isSaleVisible;
-    this.isSaleVisible = !wasVisible;
-    this.isDishesVisible = false;
-    this.isPaymentMethodsVisible = false;
+  toggleSection(section: string) {
+    this.activeSection = this.activeSection === section ? null : section;
   }
 }
+
 
