@@ -6,11 +6,12 @@ import { PaymentMethodsComponent } from '../../controls/payment-methods/payment-
 import { HttpClientModule } from '@angular/common/http';
 import { SaleComponent } from '../../controls/sale-dashboard/sale/sale.component';
 import { SaleDetailsComponent } from '../../controls/sale-dashboard/sale-details/sale-details.component';
+import { SaleDashboardComponent } from '../../controls/sale-dashboard/sale-dashboard.component';
 
 @Component({
   selector: 'features-gustov',
   standalone: true,
-  imports: [RouterModule, CommonModule, DishComponent, HttpClientModule, PaymentMethodsComponent, SaleComponent, SaleDetailsComponent],
+  imports: [RouterModule, CommonModule, DishComponent, HttpClientModule, PaymentMethodsComponent, SaleComponent, SaleDetailsComponent, SaleDashboardComponent],
   templateUrl: './gustov.component.html',
 })
 export default class GustovComponent {

@@ -18,12 +18,13 @@
             <button (click)="toggleSection('paymentMethods')" class="hover:bg-purple-500 p-3 rounded-lg transition flex items-center">
                 💳 Métodos de pago
             </button>
-            <button (click)="toggleSection('sale')" class="hover:bg-purple-500 p-3 rounded-lg transition flex items-center">
+            <button (click)="toggleSection('sale-dashboard')" class="hover:bg-purple-500 p-3 rounded-lg transition flex items-center">
                 📊 Venta y Detalles
             </button>
-            <button (click)="toggleSection('saleDetails')" class="hover:bg-purple-500 p-3 rounded-lg transition flex items-center">
+            <button class="hover:bg-purple-500 p-3 rounded-lg transition flex items-center">
                 📜 Reportes
             </button>
+            
         </nav>
     </div>
 
@@ -44,6 +45,10 @@
         
         <ng-container *ngIf="activeSection === 'saleDetails'">
             <app-sale-details></app-sale-details>
+        </ng-container>
+
+        <ng-container *ngIf="activeSection === 'sale-dashboard'" >
+            <app-sale-dashboard></app-sale-dashboard>
         </ng-container>
     </div>
     
